@@ -1,0 +1,31 @@
+package rogue_fleet.ship;
+
+import "improbable/vector3.schema";
+
+type AbsolutePositionRequest {}
+
+type AbsolutePositionResponse {
+	improbable.Vector3d position = 1;
+}
+
+component ShipPhysics {
+	id = 107;
+	
+	command AbsolutePositionResponse absolute_position(AbsolutePositionRequest);
+	
+	//12 bytes 3x floats
+	bytes position = 1;
+	
+	//6 bytes 3x shorts
+	bytes linear_velocity = 2;
+	
+	//7 bytes 3x shorts + biggest component index
+	bytes rotation = 3;
+	
+	//6 bytes 3x shorts
+	bytes angular_velocity = 4;
+	
+	//Only absolute value
+	float max_linear_velocity = 5;
+	float max_angular_velocity = 6;
+}
